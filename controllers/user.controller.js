@@ -1,5 +1,5 @@
 exports.userNew = (req, res, next) => {
-    res.end()
+    res.render('signup');
 }
 
 exports.userCreate = (req, res, next) => {
