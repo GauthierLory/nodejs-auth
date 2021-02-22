@@ -4,10 +4,27 @@ const schema = mongoose.Schema;
 
 const userSchema = schema({
     local: {
-        email: { type: 'string',required: true,unique: true },
-        password: { type: 'string' },
+        email: {
+            type: 'string',
+            required: true,
+            unique: true,
+            maxLength:[140, 'Email trop long'],
+            minLength:[1, 'Email trop court !'],
+            required: [true, 'Champ requis']
+        },
+        password: {
+            type: 'string',
+            maxLength:[140, 'Mot de passe trop long'],
+            minLength:[1, 'Mot de passe trop court !'],
+            required: [true, 'Champ requis']
+        },
     },
-    username: String
+    username: {
+        type: String,
+        maxLength:[140, 'Username trop long'],
+        minLength:[1, 'Username trop court !'],
+        required: [true, 'Champ requis']
+    }
 });
 
 userSchema.statics.hashPassword = async (password) => {
@@ -24,3 +41,5 @@ userSchema.methods.comparePassword = function(password) {
 }
 
 const User = mongoose.model('user', userSchema);
+
+module.exports = User;
