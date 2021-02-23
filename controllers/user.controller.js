@@ -8,7 +8,10 @@ exports.userCreate = async (req, res, next) => {
     try {
         const body = req.body;
         const user = await createUser(body);
-        res.redirect('/');
+        req.login(user, (err) => {
+            if (err){ next(e) }
+            res.redirect('/');
+        })
     } catch(e) {
         res.render('signup', { error: e.message });
         // const errors = Object.keys(e.errors).map( key => e.errors[key].message );
