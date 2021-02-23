@@ -11,5 +11,7 @@ exports.userCreate = async (req, res, next) => {
         res.redirect('/');
     } catch(e) {
         res.render('signup', { error: e.message });
+        // const errors = Object.keys(e.errors).map( key => e.errors[key].message );
+        // res.status(400).render('signup', { errors });
     }
 }

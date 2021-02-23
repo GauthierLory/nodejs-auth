@@ -1,5 +1,5 @@
 exports.sessionNew = (req, res, next) => {
-    res.end()
+    res.render('signin')
 }
 
 exports.sessionCreate = (req, res, next) => {
