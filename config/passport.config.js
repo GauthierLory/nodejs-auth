@@ -3,7 +3,7 @@ const { app } = require('../app');
 const User = require('../database/models/user.model');
 const LocalStrategy = require('passport-local').Strategy;
 const googleStrategy = require('passport-google-oauth20').Strategy;
-const { findUserPerEmail } = require('../queries/user.queries')
+const { findUserPerEmail, findUserPerGoogleId } = require('../queries/user.queries')
 const util = require('util');
 
 app.use(passport.initialize());
@@ -42,9 +42,27 @@ passport.use('local',new LocalStrategy({ usernameField: 'email'},async (email, p
 
 passport.use('google', new googleStrategy({
     clientID: '679321079910-5cgul7ra24hecodjo8se0nrt2bs47u64.apps.googleusercontent.com',
-    clientSecret: 'y-7Nknd_3vouQVkUO1hqb1fl',
+    clientSecret: 'secretKey',
     callbackURL: '/auth/google/cb'
-}, (accessToken, refreshToken, profile, done) => {
+}, async (accessToken, refreshToken, profile, done) => {
     console.log(util.inspect(profile, { compact: true, depth: 5, breakLength: 80 }))
-    done(null, false, { message: "test" });
+
+    try {
+        const user = await findUserPerGoogleId(profile.id)
+        if (user) {
+            done(null, user);
+        } else {
+            const newUser = new User({
+                username: profile.displayName,
+                local: {
+                    googleId: profile.id,
+                    email: profile.emails[0].value
+                }
+            })
+            const savedUser = await newUser.save();
+            done(null, savedUser)
+        }
+    }catch (e) {
+        done(e);
+    }
 }))

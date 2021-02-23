@@ -8,22 +8,16 @@ const userSchema = schema({
             type: 'string',
             required: true,
             unique: true,
-            maxLength:[140, 'Email trop long'],
-            minLength:[1, 'Email trop court !'],
-            required: [true, 'Champ requis']
         },
         password: {
             type: 'string',
-            maxLength:[140, 'Mot de passe trop long'],
-            minLength:[1, 'Mot de passe trop court !'],
-            required: [true, 'Champ requis']
         },
+        googleId: {
+            type: 'string'
+        }
     },
     username: {
         type: String,
-        maxLength:[140, 'Username trop long'],
-        minLength:[1, 'Username trop court !'],
-        required: [true, 'Champ requis']
     }
 });
 

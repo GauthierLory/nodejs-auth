@@ -30,7 +30,7 @@ exports.googleAuth = (req, res, next) => {
 
 exports.googleAuthCb = (req, res, next) => {
     passport.authenticate('google',{
-        successRedirect: 'protected',
+        successRedirect: '/users/profile',
         failureRedirect: '/'
     })(req, res, next);
 }
