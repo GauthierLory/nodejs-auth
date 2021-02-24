@@ -1,4 +1,5 @@
 const passport = require('passport');
+require('dotenv').config()
 const { app } = require('../app');
 const User = require('../database/models/user.model');
 const LocalStrategy = require('passport-local').Strategy;
@@ -41,8 +42,8 @@ passport.use('local',new LocalStrategy({ usernameField: 'email'},async (email, p
 }))
 
 passport.use('google', new googleStrategy({
-    clientID: '679321079910-5cgul7ra24hecodjo8se0nrt2bs47u64.apps.googleusercontent.com',
-    clientSecret: 'secretKey',
+    clientID: process.env.GoogleClientID,
+    clientSecret: process.env.GoogleClientSecret,
     callbackURL: '/auth/google/cb'
 }, async (accessToken, refreshToken, profile, done) => {
     console.log(util.inspect(profile, { compact: true, depth: 5, breakLength: 80 }))
