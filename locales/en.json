@@ -1,0 +1,11 @@
+{
+    "Home": "Home",
+    "Login": "Log in",
+    "Logout": "Disconnect",
+    "Title protected": "Access Protected",
+    "LoginOauth": "Log in with google",
+    "Subscription": "Subscription",
+    "Label email": "Email",
+    "Label password": "Password",
+    "Label username": "Username"
+}

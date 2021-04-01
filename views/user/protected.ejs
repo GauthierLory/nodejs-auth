@@ -6,8 +6,13 @@
 <body>
 <div class="container-fluid">
     <div class="d-flex flex-column align-items-center justify-content-center w-100" style="height:100vh;">
-        <h1>Protected</h1>
+        <h1><%= __('Title protected') %></h1>
+        
         <div class="d-flex flex-row">
+        <a href="/auth/signout" class="mx-3"><%= __('Logout') %></a>
+        <a href="/" class="mx-3"><%= __('Home') %></a>
+        </div>
+
     </div>
 </div>
 </body>

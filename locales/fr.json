@@ -1,0 +1,11 @@
+{
+    "Home": "Acceuil",
+	"Login": "Connexion",
+    "Logout": "Déconnexion",
+    "Title protected": "Accès protégé",
+	"LoginOauth": "Connexion avec Google",
+	"Subscription": "Inscription",
+	"Label email": "Email",
+	"Label password": "Mot de passe",
+    "Label username": "Pseudo"
+}
